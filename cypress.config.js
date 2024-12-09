@@ -7,7 +7,8 @@ module.exports = defineConfig({
       // Implementar eventos node si es necesario
     },
     viewportWidth: 1280,
-    viewportHeight: 720
+    viewportHeight: 720,
+    supportFile: false
   }
 })
 
