@@ -75,7 +75,7 @@ jobs:
               path: .
             continue-on-error: true
            
-    modify_readme_job:
+    add_badge_job:
         needs: cypress_job
         runs-on: ubuntu-latest
           
@@ -110,7 +110,26 @@ jobs:
               author_email: "kvalerosor@hotmail.com"
               message: "Resultat test badge"
               push: true    
-          
+    
+    deploy_job:
+        needs: cypress_job
+        runs-on: ubuntu-latest
+
+        steps:
+        #step 1
+        - name: Checkout code
+          uses: actions/checkout@v4
+      
+        #step 2
+        - name: Deploy in Vercel
+          uses: amondnet/vercel-action@v25
+          with:
+            vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+            # github-token: ${{ secrets.GH_TOKEN }} #Optional
+            vercel-args: "--prod" #Optional
+            vercel-org-id: ${{ secrets.ORG_ID}} #Required
+            vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+            # working-directory: ../../
             
           
     
