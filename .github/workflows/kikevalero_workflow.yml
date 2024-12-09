@@ -60,24 +60,24 @@ jobs:
           - name: Construint el projecte
             run: npm run build
 
-          # Step 5.
-          - name: Corrent els tests de cypress
+          # Step 5.          
+          - name: Correr cypress
             uses: cypress-io/github-action@v6
-            # S´asegurem de que continua en cas de que hi haja errors.
+            with:
+              start: npm start
+              wait-on: "http://localhost:3000"
+            id: cypress
             continue-on-error: true
 
-          # Step 6.
-          - name: Creant arxiu d´ixida
-            run: echo "Results" > result.txt
-            continue-on-error: true
-          
-          # Step 7.
-          - name: Pujant artefacte a l´arxiu creat
+          - name: Guardar resultat
+            run: echo "${{ steps.cypress.outcome }}" > result.txt
+
+          # Step 6
+          - name: Creant l´artifact
             uses: actions/upload-artifact@v4
             with:
-              name: result_cypress
-              path: result.txt
-            continue-on-error: true
+              name: result.txt
+              path: .
            
 
           
