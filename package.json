@@ -9,7 +9,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "15.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
