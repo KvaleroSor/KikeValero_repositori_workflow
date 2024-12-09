@@ -13,8 +13,16 @@ jobs:
           # Step 1.
           - name: Checkout code
             uses: actions/checkout@v4
-    
+
           # Step 2.
+          - name: Instalar EsLint
+            run: npm install --save-dev eslint
+
+          # Step 3.
+          - name: Instalar react-dom
+            run: npm install react-dom@^18.2.0
+    
+          # Step 4.
           # - name: Linter execution
           #   uses: github/super-linter@v4
           #   env: 
@@ -36,7 +44,7 @@ jobs:
           
           # Step 2.
           - name: Ajustant nodejs
-            uses: actions/setup-node@v3
+            uses: actions/setup-node@v3<L
             with:
               node-version: '18.18.0'
           
