@@ -61,7 +61,7 @@ jobs:
           
           # Step 7.
           - name: Pujant artefacte a l´arxiu creat
-            uses: actions/upload-artifact@v2
+            uses: actions/upload-artifact@v4
             with:
               name: result_cypress
               path: result.txt
