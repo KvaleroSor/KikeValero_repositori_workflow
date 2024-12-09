@@ -14,14 +14,6 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v4
 
-          # # Step 2.
-          # - name: Instalar EsLint
-          #   run: npm install --save-dev eslint
-
-          # # Step 3.
-          # - name: Instalar react-dom
-          #   run: npm install react-dom@^18.2.0
-
           # Step 2.
           - name: Instalar dependències
             run: npm install --legacy-peer-deps
