@@ -42,7 +42,7 @@ jobs:
           
           # Step 3.
           - name: Install dependencies
-            run: npm install
+            run: npm install --legacy-peer-deps
 
           # Step 4.
           - name: Construint el projecte
