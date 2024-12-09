@@ -71,6 +71,7 @@ jobs:
 
           - name: Guardar resultat
             run: echo "${{ steps.cypress.outcome }}" > result.txt
+            continue-on-error: true
 
           # Step 6
           - name: Creant l´artifact
@@ -78,6 +79,7 @@ jobs:
             with:
               name: result.txt
               path: .
+            continue-on-error: true
            
 
           
