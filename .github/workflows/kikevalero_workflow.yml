@@ -74,7 +74,41 @@ jobs:
               path: .
             continue-on-error: true
            
-
+    modify_readme_job:
+        needs: cypress_job
+        runs-on: ubuntu-latest
+          
+        steps:
+          # Step 1
+          - name: Checkout code
+            uses: actions/checkout@v4
+          
+          # Step 2
+          - name: Recuperem l´artefact
+            uses: actions/download-artifact@v4
+            with:
+              name: result.txt
+          
+          # Step 3
+          - name: Settegem l´ixida
+            run: echo "::set-output name=cypress_outcome::$(cat result.txt)"
+            id: cypress_outcome
+          
+          # Step 4
+          - name: Afegim el badge del resultat del test
+            uses: ./.github/actions/resultat_test_action
+            with:
+              test_result: ${{steps.cypress_outcome.outputs.cypress_outcome}}
+          
+          # Step 5
+          - name: Commit i push dels canvits
+            uses: EndBug/add-and-commit@v9
+            with:
+              add: .
+              author_name: "Kike Valero"
+              author_email: "kvalerosor@hotmail.com"
+              message: "Resultat test badge"
+              push: true    
           
             
           
