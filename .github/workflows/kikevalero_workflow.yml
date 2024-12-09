@@ -58,6 +58,7 @@ jobs:
             with:
               start: npm start
               wait-on: "http://localhost:3000"
+              install: false
             id: cypress
             continue-on-error: true
 
