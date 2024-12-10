@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "cypress.global": true
   },
   "extends": [
     "eslint:recommended",
@@ -22,7 +23,7 @@
     "quotes": ["error", "double"],
     "curly": "error",
     "default-case-last": "error",
-    // "no-var": "error", # He comentat esta variable perquè quan execute l´Eslintcr.json hem dona fallo de les variables de cypress no declarades.
+    "no-var": "error", 
     "semi": ["error", "always"],
     "comma-dangle": ["error", "never"],
     "react/prop-types": "off",
