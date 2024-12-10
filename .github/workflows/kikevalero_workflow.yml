@@ -27,6 +27,9 @@ jobs:
               LINTER_RULES_PATH: /
               JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
               VALIDATE_JAVASCRIPT_ES: 'true' 
+              # Antoni, voràs que he modificat aquest arxiu i he afegit la línea ""cypress/globals": true" es per al
+              # que et vaig dir al correu que et vaig enviar, perquè hem fallava el linter per culpa de les variables
+              # globals de cypress.
               
     cypress_job:
         runs-on: ubuntu-latest
@@ -111,25 +114,25 @@ jobs:
               message: "Resultat test badge"
               push: true    
     
-    # deploy_job:
-    #     needs: cypress_job
-    #     runs-on: ubuntu-latest
+    deploy_job:
+        needs: cypress_job
+        runs-on: ubuntu-latest
 
-    #     steps:
-    #     #step 1
-    #     - name: Checkout code
-    #       uses: actions/checkout@v4
+        steps:
+        #step 1
+        - name: Checkout code
+          uses: actions/checkout@v4
       
-    #     #step 2
-    #     - name: Desplegar en Vercel
-    #       uses: amondnet/vercel-action@v25
-    #       with:
-    #         vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-    #         # github-token: ${{ secrets.GH_TOKEN }} #Optional
-    #         vercel-args: "--prod" #Optional
-    #         vercel-org-id: ${{ secrets.ORG_ID}} #Required
-    #         vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
-    #         # working-directory: ../../
+        #step 2
+        - name: Desplegar en Vercel
+          uses: amondnet/vercel-action@v25
+          with:
+            vercel-token: ${{ secrets.VERCEL_TOKEN }} 
+            # github-token: ${{ secrets.GH_TOKEN }} 
+            vercel-args: "--prod" #Optional
+            vercel-org-id: ${{ secrets.ORG_ID}} 
+            vercel-project-id: ${{ secrets.PROJECT_ID}} 
+            # working-directory: ../../
             
           
     

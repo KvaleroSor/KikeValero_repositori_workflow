@@ -3,8 +3,11 @@
     "browser": true,
     "es2021": true,
     "node": true,
-    "cypress/globals": true
+    "cypress/globals": true 
   },
+  //Antoni, voràs que he modificat aquest arxiu i he afegit la línea ""cypress/globals": true" es per al
+  //que et vaig dir al correu que et vaig enviar, perquè hem fallava el linter per culpa de les variables
+  //globals de cypress.
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
