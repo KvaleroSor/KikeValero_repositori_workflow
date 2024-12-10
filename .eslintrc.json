@@ -17,7 +17,8 @@
   "plugins": [
     "react",
     "jsx-a11y",
-    "import"
+    "import",
+    "cypress"
   ],
   "rules": {
     "quotes": ["error", "double"],
