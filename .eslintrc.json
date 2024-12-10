@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true,
     "node": true,
-    "cypress.global": true
+    "cypress/global": true
   },
   "extends": [
     "eslint:recommended",
