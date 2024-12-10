@@ -19,14 +19,14 @@ jobs:
             run: npm install --legacy-peer-deps
     
           # Step 4.
-          # - name: Linter execution
-          #   uses: github/super-linter@v4
-          #   env: 
-          #     DEFAULT_BRANCH: main
-          #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #     LINTER_RULES_PATH: /
-          #     JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
-          #     VALIDATE_JAVASCRIPT_ES: 'true' 
+          - name: Linter execution
+            uses: github/super-linter@v4
+            env: 
+              DEFAULT_BRANCH: main
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              LINTER_RULES_PATH: /
+              JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
+              VALIDATE_JAVASCRIPT_ES: 'true' 
               
     cypress_job:
         runs-on: ubuntu-latest
@@ -111,25 +111,25 @@ jobs:
               message: "Resultat test badge"
               push: true    
     
-    deploy_job:
-        needs: cypress_job
-        runs-on: ubuntu-latest
+    # deploy_job:
+    #     needs: cypress_job
+    #     runs-on: ubuntu-latest
 
-        steps:
-        #step 1
-        - name: Checkout code
-          uses: actions/checkout@v4
+    #     steps:
+    #     #step 1
+    #     - name: Checkout code
+    #       uses: actions/checkout@v4
       
-        #step 2
-        - name: Deploy in Vercel
-          uses: amondnet/vercel-action@v25
-          with:
-            vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-            # github-token: ${{ secrets.GH_TOKEN }} #Optional
-            vercel-args: "--prod" #Optional
-            vercel-org-id: ${{ secrets.ORG_ID}} #Required
-            vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
-            # working-directory: ../../
+    #     #step 2
+    #     - name: Desplegar en Vercel
+    #       uses: amondnet/vercel-action@v25
+    #       with:
+    #         vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+    #         # github-token: ${{ secrets.GH_TOKEN }} #Optional
+    #         vercel-args: "--prod" #Optional
+    #         vercel-org-id: ${{ secrets.ORG_ID}} #Required
+    #         vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+    #         # working-directory: ../../
             
           
     
