@@ -16,3 +16,6 @@ inputs:
   deploy_job:
     description: "Resultat del deploy_job"
     required: true
+runs:
+  using: "node12"
+  main: "index.js"
