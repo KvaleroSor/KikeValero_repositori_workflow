@@ -18,7 +18,7 @@ jobs:
           - name: Instalar dependències
             run: npm install --legacy-peer-deps
     
-          # Step 4.
+          # Step 3.
           - name: Linter execution
             uses: github/super-linter@v4
             env: 
@@ -39,23 +39,9 @@ jobs:
         steps:
           # Step 1.
           - name: Checkout code
-            uses: actions/checkout@v4
-          
-          # # # Step 2.
-          # - name: Ajustant nodejs
-          #   uses: actions/setup-node@v3
-          #   with:
-          #     node-version: '18.18.0'
-          
-          # # # Step 3.
-          # - name: Install dependencies
-          #   run: npm install --legacy-peer-deps
+            uses: actions/checkout@v4                
 
-          # # # Step 4.
-          # - name: Construint el projecte
-          #   run: npm run build
-
-          # Step 5.          
+          # Step 2.          
           - name: Correr cypress
             uses: cypress-io/github-action@v6
             with:
@@ -124,24 +110,18 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
-        # # Step 3
-        # - name: Node js
-        #   uses: actions/setup-node@v2
-        #   with:
-        #     node-version: 16
-
-        # Step 4
+        # Step 2
         - name: Instal·lant dependencies
           run: npm install --legacy-peer-deps
 
-        # Step 5
+        # Step 3
         - name: Construint el projecte
           run: npm run build
 
         - name: Instal·lar Vercel CLI 
           run: npm install -g vercel@25.1.0
       
-        # Step 2
+        # Step 4
         - name: Desplegar en Vercel
           uses: amondnet/vercel-action@v25
           with:
@@ -151,7 +131,29 @@ jobs:
             vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} 
            
 
-    
+    Notification_job:
+      needs: [linter_job, cypress_job, add_badge_job, deploy_job]
+      runs-on: ubuntu-latest
+      if: always()
+      continue-on-error: true
+      
+      steps:
+
+        # Step 1
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        # Step 2
+        - name: Enviar email notificant
+          uses: ./.github/actions/notificacio_job
+          with:
+            destinatari_email: ${{ secrets.DESTINATARI_EMAIL }}
+            linter_job: ${{ needs.linter_job.result }}
+            cypress_job: ${{ needs.cypress_job.result }}
+            add_badge_job: ${{ needs.add_badge_job.result }}
+            deploy_job: ${{ needs.deploy_job.result }}
+
+
             
           
     

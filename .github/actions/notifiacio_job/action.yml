@@ -1,4 +1,0 @@
-name: notificacion_job
-description: "Notificar el resultat del test via email"
-inputs:
-  
