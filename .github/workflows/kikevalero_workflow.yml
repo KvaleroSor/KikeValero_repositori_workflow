@@ -124,19 +124,22 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
-        # # Step 3
-        # - name: Node js
-        #   uses: actions/setup-node@v2
-        #   with:
-        #     node-version: 16
+        # Step 3
+        - name: Node js
+          uses: actions/setup-node@v2
+          with:
+            node-version: 16
 
-        # # Step 4
-        # - name: Instal·lant dependencies
-        #   run: npm install --legacy-peer-deps
+        # Step 4
+        - name: Instal·lant dependencies
+          run: npm install --legacy-peer-deps
 
-        # # Step 5
-        # - name: Construint el projecte
-        #   run: next build
+        # Step 5
+        - name: Construint el projecte
+          run: next build
+
+        - name: Instal·lar Vercel CLI 
+          run: npm install -g vercel@25.1.0
       
         # Step 2
         - name: Desplegar en Vercel
