@@ -124,26 +124,26 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v4
 
-        # Step 3
-        - name: Node js
-          uses: actions/setup-node@v2
-          with:
-            node-version: 16
+        # # Step 3
+        # - name: Node js
+        #   uses: actions/setup-node@v2
+        #   with:
+        #     node-version: 16
 
-        # Step 4
-        - name: Instal·lant dependencies
-          run: npm install --legacy-peer-deps
+        # # Step 4
+        # - name: Instal·lant dependencies
+        #   run: npm install --legacy-peer-deps
 
-        # Step 5
-        - name: Construint el projecte
-          uses: next build
+        # # Step 5
+        # - name: Construint el projecte
+        #   run: next build
       
         # Step 2
         - name: Desplegar en Vercel
           uses: amondnet/vercel-action@v25
           with:
             vercel-token: ${{ secrets.VERCEL_TOKEN }} 
-            github-token: ${{ secrets.GH_TOKEN }}            
+            # github-token: ${{ secrets.GH_TOKEN }}            
             vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} 
             vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} 
            
